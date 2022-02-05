@@ -4,6 +4,7 @@ import datetime
 import uuid
 import hmac
 import json
+import sys
 from hashlib import sha256
 
 config_file = open('config.json')
@@ -14,6 +15,8 @@ private_api_key = config['private_api_key']
 organization_id = config['organization_id']
 withdraw_address_id = config['withdraw_address_id']
 minimum_balance = config['minimum_balance']
+
+loop = True
 
 
 def log_time():
@@ -72,7 +75,7 @@ def api_call(method, path, query, body):
 
 
 if __name__ == "__main__":
-    while 1:
+    while loop:
         reply = api_call(
             "GET", "/main/api/v2/accounting/account2/BTC", "", None)
         balance = json.loads(reply.content)['available']
@@ -91,4 +94,7 @@ if __name__ == "__main__":
                       json.loads(reply.content)['id'])
             else:
                 print(log_time() + "WARNING: Withdraw request failed")
-        time.sleep(14400)
+        if len(sys.argv) > 1 and sys.argv[1] == '--cron':
+            loop = False
+        else:
+            time.sleep(14400)

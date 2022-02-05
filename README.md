@@ -20,18 +20,18 @@ Acquire the necessary files by downloading the [latest release](https://github.c
 
 4. Navigate to the NiceHash [API page](https://www.nicehash.com/docs/rest/get-main-api-v2-accounting-withdrawalAddresses). Make sure you are on the "/main/api/v2/accounting/withdrawalAddresses" endpoint and click "Try it out." Select BTC for the currency and then click "Get." Look through the response for your desired withdrawal address. It will be labeled "address". Scroll up and take note of the associated "id." This is your withdrawal address id.
 
-   NOTE: Your withdrawal address and your withdrawal address id are not the same. Make sure you take note of the id.
+    NOTE: Your withdrawal address and your withdrawal address id are not the same. Make sure you take note of the id.
 
 5. Finally, take all of the information you have gathered so far...
 
-   - organization id
-   - public key
-   - private key
-   - withdrawal address id
+    - organization id
+    - public key
+    - private key
+    - withdrawal address id
 
-   ... and enter these values into the `config.json` file. Also set the minimum balance value in the config file to your desired amount (Can not be less than 0.0005).
+    ... and enter these values into the `config.json` file. Also set the minimum balance value in the config file to your desired amount (Can not be less than 0.0005).
 
-   Save the file and you are done with configuration.
+    Save the file and you are done with configuration.
 
 ## Usage
 
@@ -47,6 +47,22 @@ or
 
 ```
 python3 WithdrawScript.py
+```
+
+## Cron
+
+---
+
+If you would like to run this script on your own schedule using [crontab](https://www.hostinger.com/tutorials/cron-job), you can pass '--cron' as a command line argument. Passing this argument will suppress the automatic 4 hour loop, and the script will only execute once.
+
+You can use [Crontab Generator](https://crontab-generator.org/) to quickly generate a custom crontab command.
+
+**Note:** Crontab runs in your home directory by default. If you saved the script to a different directory, you will have to tell cron to change directories before running the script.
+
+Ex:
+
+```
+* */4 * * * cd /home/[USER]/AutoWithdraw && python3 WithdrawScript.py --cron >/dev/null 2>&1
 ```
 
 ## License
