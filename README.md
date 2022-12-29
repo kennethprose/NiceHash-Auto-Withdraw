@@ -1,3 +1,7 @@
+| :warning: WARNING          |
+|:---------------------------|
+| I was already moving away from NiceHash and Ethereum's switch to proof of stake was the final nail in the coffin. I will no longer be using or maintaining this project. Feel free to fork this repo if you are somehow still profitable with mining.|
+
 # NiceHash-Auto-Withdraw
 
 It is highly recommended that you do not keep any significant amount of cryptocurrency on an exchange. Crypto exchanges have a long history of getting hacked with the victim being you, the user. However, repeatedly logging into NiceHash to transfer your crypto to a safer location can be quite annoying, especially as your mining operations grow. This script utilizes the NiceHash API to monitor your balance and transfer your crypto to a specified wallet after you hit a specified threshold.
